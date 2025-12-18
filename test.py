@@ -111,7 +111,7 @@ def main():
     if len(model_files) > 0:
         rules = model_files
     str_time = time.strftime("%Y%m%d_%H%M%S")
-    save_path = f"./save/test_{str_time}"
+    save_path = f"./model/test_{str_time}"
     os.makedirs(save_path, exist_ok=True)
     writer_mk = pd.ExcelWriter(f"{save_path}/makespan.xlsx")
     writer_t = pd.ExcelWriter(f"{save_path}/time.xlsx")
