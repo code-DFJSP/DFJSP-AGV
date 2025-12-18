@@ -104,8 +104,8 @@ def main():
     model_files = []
 
     if "DRL" in rules:
-        for f in os.listdir("./checkpoints"):
-            if f.endswith(".pth"):
+        for f in os.listdir("./model"):
+            if f.endswith(".pt"):
                 model_files.append(f)
 
     if len(model_files) > 0:
@@ -124,7 +124,7 @@ def main():
     start = time.time()
     for rule_id, rule in enumerate(rules):
         print("\nTesting rule:", rule)
-        ckpt = torch.load(f"./checkpoints/{rule}", map_location=device)
+        ckpt = torch.load(f"./model/{rule}", map_location=device)
         agent.online.load_state_dict(ckpt["online"])
         agent.target.load_state_dict(ckpt["target"])
         mlp_op.load_state_dict(ckpt["mlp_op"])
