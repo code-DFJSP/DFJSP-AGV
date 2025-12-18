@@ -150,13 +150,13 @@ def main(config_path):
                 'target': agent.target.state_dict(),
                 'mlp_op': mlp_op.state_dict(),
                 'gat_triple': gat_triple.state_dict()
-            }, f'checkpoints/ckpt_ep{ep}.pth')
+            }, f'model/ckpt_ep{ep}.pt')
     torch.save({
         'online': agent.online.state_dict(),
         'target': agent.target.state_dict(),
         'mlp_op': mlp_op.state_dict(),
         'gat_triple': gat_triple.state_dict()
-    }, 'checkpoints/final.pth')
+    }, 'model/final.pt')
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
