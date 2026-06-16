@@ -104,14 +104,14 @@ def main():
     model_files = []
 
     if "DRL" in rules:
-        for f in os.listdir("./checkpoints"):
-            if f.endswith(".pth"):
+        for f in os.listdir("./model"):
+            if f.endswith(".pt"):
                 model_files.append(f)
 
     if len(model_files) > 0:
         rules = model_files
     str_time = time.strftime("%Y%m%d_%H%M%S")
-    save_path = f"./save/test_{str_time}"
+    save_path = f"./model/test_{str_time}"
     os.makedirs(save_path, exist_ok=True)
     writer_mk = pd.ExcelWriter(f"{save_path}/makespan.xlsx")
     writer_t = pd.ExcelWriter(f"{save_path}/time.xlsx")
@@ -124,7 +124,7 @@ def main():
     start = time.time()
     for rule_id, rule in enumerate(rules):
         print("\nTesting rule:", rule)
-        ckpt = torch.load(f"./checkpoints/{rule}", map_location=device)
+        ckpt = torch.load(f"./model/{rule}", map_location=device)
         agent.online.load_state_dict(ckpt["online"])
         agent.target.load_state_dict(ckpt["target"])
         mlp_op.load_state_dict(ckpt["mlp_op"])

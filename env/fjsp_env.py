@@ -118,7 +118,7 @@ class ActionSelector:
             job_id = unfinished[int(np.argmin(scores))]
         job = self.jobs[job_id]
         cur_op = len(job.End)
-        machine_id = self.select_machine(job_id)
+        machine_id = self.select_machines(job_id)
         PT = self.env.Processing_time[job_id][cur_op][machine_id]
         if action_id in [0,3]:
             agv_id = self.select_nearest_agv(job)
